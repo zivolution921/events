@@ -1,0 +1,10 @@
+<h1><%= @events.size %> Events</h1>
+
+<!-- passing data from action to view template by setting instance variable and referencing  -->
+<ul>
+<!-- iterating through events and generating event name subtituted  -->
+  <% @events.each do |event| %>
+  <!-- subtitute event name -->
+    <li><%= event %></li>
+  <% end %>
+</ul>
