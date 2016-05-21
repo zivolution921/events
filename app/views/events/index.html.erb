@@ -5,6 +5,11 @@
 <!-- iterating through events and generating event name subtituted  -->
   <% @events.each do |event| %>
   <!-- subtitute event name -->
-    <li><%= event %></li>
+    <li>
+      <strong><%= event.name %></strong>
+      in <%= event.location %>:
+      <!-- method to convert any number to currency -->
+      <%= number_to_currency(event.price) %>
+    </li>
   <% end %>
 </ul>
