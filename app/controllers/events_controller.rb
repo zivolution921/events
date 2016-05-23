@@ -29,6 +29,8 @@ class EventsController < ApplicationController
   end
 
   def create
+    # instantiate new object event with permitted params and save to database
+    # redirect_to show page
     @event = Event.new(event_params)
     @event.save
     redirect_to @event
