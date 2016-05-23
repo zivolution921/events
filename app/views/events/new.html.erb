@@ -1,0 +1,29 @@
+<h1>Add New Event</h1>
+
+<%= form_for(@event) do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <!-- @event.name its an object same as :name because |f| know we build form for the @event -->
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description, cols: 40, rows: 7 %>
+  </p>
+  <p>
+    <%= f.label :location %><br>
+    <%= f.text_field :location %>
+  </p>
+  <p>
+    <%= f.label :starts_at %><br>
+    <%= f.datetime_select :starts_at %>
+  </p>
+  <p>
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </p>
+  <p>
+    <!-- the |f| knows about object @event figure out if it saved in database so it know to create -->
+    <%= f.submit %>
+  </p>
+<% end %>
