@@ -16,18 +16,18 @@
   </p>
   <p>
     <%= f.label :price %><br>
-    <%= f.number_field :price %>
+    <%= f.number_field :price, size: 6 %>
   </p>
   <p>
     <%= f.label :starts_at %><br>
     <%= f.datetime_select :starts_at %>
   </p>
   <p>
-    <%= f.label :image_file_name %><br>
-    <%= f.text_field :image_file_name, size: 30, placeholder: "GIF, JPG, OR PNG file name" %>
+    <%= f.label :image_file_name %><br/>
+    <%= f.text_field :image_file_name, size: 30, placeholder: "GIF, JPG, or PNG file name" %>
   </p>
   <p>
-    <%= f.label :capacity %><br>
+    <%= f.label :capacity %><br/>
     <%= f.number_field :capacity %>
   </p>
   <p>

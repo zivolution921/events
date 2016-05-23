@@ -24,8 +24,10 @@
   </p>
 </article>
 
-<%= link_to "All Events", root_path %>
-<%= link_to "Edit", edit_event_path(@event) %>
-<!-- delete method to delete an event
-data method inside hash confirming  -->
-<%= link_to "Delete", event_path(@event), method: :delete, data: {confirm: 'Are you sure?'} %>
+<footer>
+  <nav>
+    <%= link_to("All Events", events_path) %> |
+    <%= link_to 'Edit', edit_event_path(@event) %> |
+    <%= link_to 'Delete', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </nav>
+</footer>

@@ -21,7 +21,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     # hash data came from the form
     @event.update(event_params)
-    redirect_to event_path(@event)
+    redirect_to @event
   end
 
   def new
@@ -47,6 +47,6 @@ class EventsController < ApplicationController
   def event_params
     # explicitly which params could be changed via the form mass assignment
     # explicitly permit attributes from the form can me mass assignened
-    event_params = params.require(:event).permit(:name, :description, :location, :price, :starts_at, :image_file_name, :capacity)
+    params.require(:event).permit(:name, :description, :location, :price, :starts_at, :image_file_name, :capacity)
   end
 end

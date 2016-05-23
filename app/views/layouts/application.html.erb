@@ -8,7 +8,11 @@
 </head>
 <body>
 
+<%= render 'layouts/header' %>
+<%= render 'layouts/sidebar' %>
+<!-- return the html action generate and subtituted into layout file -->
 <%= yield %>
 
+<%= render 'layouts/footer' %>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <h1><%= pluralize(@events.size, 'Event')%></h1>
-<%= link_to "Add New Event", new_event_path %>
+
 <p>
   Check out the following <%= @events.size %> events:
 </p>
@@ -8,7 +8,7 @@
 <!-- iterating through events and generating event name subtituted  -->
   <% @events.each do |event| %>
   <!-- subtitute event name -->
-    <article>
+    <article class="event">
       <header>
       <%= image_for(event) %>
      <!--  passing event_path -->
@@ -36,3 +36,5 @@
       </table>
     </article> 
   <% end %>
+
+  <%= link_to "Add New Event", new_event_path %>
