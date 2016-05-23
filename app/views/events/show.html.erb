@@ -1,5 +1,6 @@
 <article>
   <header>
+    <%= image_for(@event) %>
     <h1><%= @event.name %></h1>
   </header>
   <p>
@@ -17,7 +18,14 @@
   <p>
     <%= format_price(@event) %>
   </p>
+  <h3>Capacity</h3>
+  <p>
+    <%= pluralize(@event.capacity, 'spot') %>
+  </p>
 </article>
 
 <%= link_to "All Events", root_path %>
 <%= link_to "Edit", edit_event_path(@event) %>
+<!-- delete method to delete an event
+data method inside hash confirming  -->
+<%= link_to "Delete", event_path(@event), method: :delete, data: {confirm: 'Are you sure?'} %>

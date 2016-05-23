@@ -1,5 +1,5 @@
 <!-- helper method for object @event takes block -->
-<!-- partial is reusable part of view template that can be rendered from other views -->
+<!-- partial is reusable part of view template that can be rendered from other views to remove duplications -->
 <%= form_for(@event) do |f| %>
   <p>
     <%= f.label :name %><br>
@@ -15,12 +15,20 @@
     <%= f.text_field :location %>
   </p>
   <p>
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </p>
+  <p>
     <%= f.label :starts_at %><br>
     <%= f.datetime_select :starts_at %>
   </p>
   <p>
-    <%= f.label :price %><br>
-    <%= f.number_field :price %>
+    <%= f.label :image_file_name %><br>
+    <%= f.text_field :image_file_name, size: 30, placeholder: "GIF, JPG, OR PNG file name" %>
+  </p>
+  <p>
+    <%= f.label :capacity %><br>
+    <%= f.number_field :capacity %>
   </p>
   <p>
     <!-- the |f| knows about object @event figure out if it saved in database so it know to create -->
