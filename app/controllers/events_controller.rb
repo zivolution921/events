@@ -1,52 +1,52 @@
 class EventsController < ApplicationController
-  #passing data through instance variable to the index page
+  
   def index
-    #custome query method built
-    @events = Event.upcoming
+    @events = Event.upcoming    
   end
 
   def show
-    #fail
     @event = Event.find(params[:id])
   end
-
+  
   def edit
-    #finding placholder in route :id
-    # fetch id params from database
     @event = Event.find(params[:id])
   end
-
+  
   def update
-    # event data from the form
+    # returns true or false based on validation on record on database
     @event = Event.find(params[:id])
-    # hash data came from the form
-    @event.update(event_params)
-    redirect_to @event
+    if @event.update(event_params)
+      redirect_to @event, notice: "Event successfully updated!"
+    else
+      render :edit
+    end
   end
-
+  
   def new
-  #instantiate an empty event object and render new view template
     @event = Event.new
   end
-
+  
   def create
-    # instantiate new object event with permitted params and save to database
-    # redirect_to show page
+    # setting up event in memory and calling save method
     @event = Event.new(event_params)
-    @event.save
-    redirect_to @event
+    #save method will call the validations if it is true will redirect to show page
+    if @event.save
+      redirect_to @event, notice: "Event successfully created!"
+    else
+    # render new template and prepopulate the form with all the valid form data and highlight invalid
+      render :new
+    end
   end
 
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-    redirect_to events_url
+    redirect_to events_url, alert: "Event successfully deleted!"
   end
+    
+private
 
-  private
   def event_params
-    # explicitly which params could be changed via the form mass assignment
-    # explicitly permit attributes from the form can me mass assignened
     params.require(:event).permit(:name, :description, :location, :price, :starts_at, :image_file_name, :capacity)
   end
 end
