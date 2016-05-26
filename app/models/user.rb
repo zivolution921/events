@@ -11,4 +11,11 @@ class User < ActiveRecord::Base
   validates :email, presence: true,                   
                     format: /\A\S+@\S+\z/,
                     uniqueness: { case_sensitive: false }
+
+  def self.authenticate(email, password)
+  #checking if the user was authenticated return true or false
+    user = User.find_by(email: email)
+  # either user or if user nil will never run authenticate
+    user && user.authenticate(password)
+  end
 end
