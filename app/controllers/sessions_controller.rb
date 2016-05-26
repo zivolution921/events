@@ -18,5 +18,11 @@ class SessionsController < ApplicationController
       render :new
     end
   end 
+  # delete session_id from session hash
+  def destroy
+    # assign value of nil which remove key user_id from the session
+    session[:user_id] = nil
+    redirect_to root_url, notice: "You're now signed out!"
+  end
 
 end
