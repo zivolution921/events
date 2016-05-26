@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # when we get signup than go to user controller
+  get "signup" => "users#new"
   resources :users
 
   root "events#index"
