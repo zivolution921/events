@@ -16,6 +16,7 @@ class EventsController < ApplicationController
     # returns true or false based on validation on record on database
     @event = Event.find(params[:id])
     if @event.update(event_params)
+    # flash object hash with key and value :notice
       redirect_to @event, notice: "Event successfully updated!"
     else
       render :edit

@@ -1,8 +1,9 @@
 <header id="content-header">
   <h1>New Registration for <%= link_to @event.name, @event %></h1>
 </header>
-
+<!-- need @event and @registration objects in order to create the url -->
 <%= form_for([@event, @registration]) do |f| %>
+<!-- the key object with the value that passed @registration to get errors associated with @registration -->
   <%= render "shared/errors", object: @registration %>
   <fieldset>
     <ol>
@@ -21,6 +22,7 @@
       </li>
     </ol>
     <p>
+    <!-- when clicking submit the form data is passed to create action to find the event uses that event to instantiate registration with the form data -->
       <%= f.submit %> 
       <%= link_to "Cancel", @event, class: 'button' %>
     </p

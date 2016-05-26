@@ -4,6 +4,7 @@ class CreateRegistrations < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :how_heard
+      #registrations reference to event
       t.references :event, index: true
 
       t.timestamps

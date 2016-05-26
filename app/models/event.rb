@@ -13,9 +13,11 @@ class Event < ActiveRecord::Base
     with:    /\w+\.(gif|jpg|png)\z/i,
     message: "must reference a GIF, JPG, or PNG image"
   }
-  
+
   validate :price_is_a_multiple_of_fifty_cents
   
+  # rails generates methods to manage events registration
+  # rails will destroy each child when the parent object is destroyed
   has_many :registrations, dependent: :destroy
   
   def self.upcoming

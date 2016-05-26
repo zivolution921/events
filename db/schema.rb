@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121214204822) do
+ActiveRecord::Schema.define(version: 20160525205755) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -35,5 +35,13 @@ ActiveRecord::Schema.define(version: 20121214204822) do
   end
 
   add_index "registrations", ["event_id"], name: "index_registrations_on_event_id"
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

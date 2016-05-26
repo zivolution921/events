@@ -29,6 +29,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (5.0.1.20140414130214)
+    bcrypt (3.1.11)
     builder (3.2.2)
     capybara (2.6.2)
       addressable
@@ -140,6 +141,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   capybara (= 2.6.2)
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
