@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # singular resource
+  resource :session
   # when we get signup than go to user controller
   get "signup" => "users#new"
   resources :users
