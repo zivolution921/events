@@ -3,8 +3,13 @@
     <h1><%= link_to 'Events', root_path %></h1>
     <nav>
       <p>
+      <!-- returns user object link_to convention know to go to show page associted with resource -->
+      <% if current_user %>
+       <%= link_to current_user.name, current_user %>
+      <% else %>
         <%= link_to "Sign Up", signup_path, class: "button" %>
         <%= link_to "Sign In", new_session_path, class: "button" %>
+      <% end %>
       </p>
     </nav>
   </div>
