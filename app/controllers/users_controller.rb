@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  # will run before every action in the controller
+  # restrictions
+  before_action :require_signin, except: [:new, :create]
+
   def index
     @users = User.all
   end
