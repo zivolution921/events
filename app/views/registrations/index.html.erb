@@ -5,7 +5,8 @@
 <ol id="registrations">
   <% @registrations.each do |r| %>
     <li>
-      <%= mail_to(r.email, r.name) %>
+   <!--  link to registration name and registration object to get the user to go by convention to user profile page -->
+      <%= link_to r.user.name, r.user %>
       <span class="date">
         <%= time_ago_in_words(r.created_at) %> ago
       </span>

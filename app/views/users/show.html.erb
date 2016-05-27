@@ -3,6 +3,19 @@
     <h1><%= @user.name %></h1>
     <h2><%= @user.email %></h2>
   </header>
+  <% if @registrations.any? %>
+    <h3>Registered For</h3>
+    <ul>
+    <!-- loop through all the registrations -->
+      <% @registrations.each do |registration| %>
+        <li>
+          <%= link_to registration.event.name, registration.event %>
+          (<%= time_ago_in_words(registration.created_at) %> ago)
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <footer>
     <nav>
     <!-- if current user is the same as user that is displayed than you own the account -->
