@@ -16,6 +16,7 @@ class RegistrationsController < ApplicationController
 
   def create
     # the registration is tied to the event
+    # event object associateed to registrations and passing parameters
     @registration = @event.registrations.new(registration_params)
     if @registration.save
       redirect_to event_registrations_path(@event),

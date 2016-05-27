@@ -3,11 +3,13 @@ class Registration < ActiveRecord::Base
   # registration can access the associated event
   # rails dynamically make methods for registration associated event such as reading and writing a registration event
   belongs_to :event
+  # foreign key in registration table
+  belongs_to :user
   # assign event to registration and get the event from registration
   
-  validates :name, presence: true
+  # validates :name, presence: true
   
-  validates :email, format: { with: /(\S+)@(\S+)/ }
+  # validates :email, format: { with: /(\S+)@(\S+)/ }
 
   HOW_HEARD_OPTIONS = [ 
     'Newsletter',
