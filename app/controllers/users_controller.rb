@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   # will run before every action in the controller
-  # restrictions
+  # before_action method excecuted from top to buttom if one is false that the rest dont run
   before_action :require_signin, except: [:new, :create]
-
+  before_action :require_current_user, only: [:edit, :update, :destroy]
+  
   def index
     @users = User.all
   end
@@ -26,12 +27,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # user identified by the params id
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to @user, notice: "Account successfully updated!"
     else
@@ -40,7 +38,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     # logout the user_id to nil
     session[:user_id] = nil
@@ -48,6 +45,15 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def require_current_user
+    # user identified by the params id lookup for the user 
+    @user = User.find(params[:id])
+    # unless the current_user is the same as the user that is manipulated
+    unless current_user?(@user)
+      redirect_to root_url
+    end
+  end
 
   def user_params
     # permitted list that can be mass assigned from a form

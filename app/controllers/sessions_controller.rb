@@ -11,7 +11,9 @@ class SessionsController < ApplicationController
       # value to key is id of the user
       session[:user_id] = user.id
       flash[:notice] = "Welcome back, #{user.name}!"
-      redirect_to user
+      # if have intended_url will redirect otherwise redirect to profile
+      redirect_to(session[:intended_url] || user)
+      session[:intended_url] = nil
     else
       # render the flash on the same request otherwise wait for another request
       flash[:alert] = "Invalid email/password combination!"

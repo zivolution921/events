@@ -5,12 +5,15 @@
   </header>
   <footer>
     <nav>
+    <!-- if current user is the same as user that is displayed than you own the account -->
+    <% if current_user?(@user) %>
       <%= link_to "Edit Account", edit_user_path(@user), class: "button" %>
       <%= link_to "Delete Account", @user,
                   # route know to destroy  
                   method: :delete, 
                   data: {conform: 'Are you sure?' },
                   class: 'button' %>
+    <% end %>
     </nav>
   </footer>
 </article>
