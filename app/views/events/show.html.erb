@@ -9,6 +9,30 @@
     <%= @event.description %>
   </p>
   
+  <p>
+    <%= pluralize(@likers.count, 'like') %> 
+  </p>
+  
+  <% if current_user %>
+    <% if @current_like %>
+      <%= button_to "Unlike", event_like_path(@event, @current_like), method: :delete %>
+    <% else %>  
+      <%= button_to "Like", event_likes_path(@event) %>
+    <% end %>
+  <% end %>
+  
+  <% if @likers.any? %>
+    <h3>Likers</h3>
+    <ul>
+   <!--  loop through all the likers users and link through user profile page -->
+      <% @likers.each do |user| %>
+        <li>
+          <%= link_to user.name, user %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  
   <h3>Price</h3>
   <p>
     <%= format_price(@event) %>
@@ -24,22 +48,9 @@
     <%= pluralize(@event.capacity, 'spot') %>
   </p>
   
-  <% if @event.registrations.any? %>
-    <h3><%= pluralize(@event.registrations.size, 'Registration') %></h3>
-    <ol class="registrations">
-      <% @event.registrations.each do |registration| %>
-        <li>
-          <%= mail_to(registration.email, registration.name) %>
-          <span class="date"><%= time_ago_in_words(registration.created_at) %> ago</span>
-          (<%= registration.how_heard %>)
-        </li>
-      <% end %>
-    </ol>
-    <p>
-      <%= link_to pluralize(@event.registrations.size, 'registration'), 
-                  event_registrations_path(@event) %>
-    </p>
-  <% end %>
+  <h3>Registrations</h3>
+  <%= link_to pluralize(@event.registrations.size, 'registration'), 
+              event_registrations_path(@event) %>
 
   <footer>
     <%= register_link_for(@event) %>
