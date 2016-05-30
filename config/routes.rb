@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  resources :categories
+
   # singular resource
   resource :session
   # when we get signup than go to user controller
