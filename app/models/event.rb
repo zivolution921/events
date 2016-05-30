@@ -19,6 +19,10 @@ class Event < ActiveRecord::Base
   # rails generates methods to manage events registration
   # rails will destroy each child when the parent object is destroyed
   has_many :registrations, dependent: :destroy
+
+  has_many :likes, dependent: :destroy
+  # associate event and user through likes table using inner join
+  has_many :users, through: :likes
   
   def self.upcoming
     where('starts_at >= ?', Time.now).order(:starts_at)

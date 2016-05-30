@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :likes
+
   # singular resource
   resource :session
   # when we get signup than go to user controller
