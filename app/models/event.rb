@@ -22,7 +22,8 @@ class Event < ActiveRecord::Base
 
   has_many :likes, dependent: :destroy
   # associate event and user through likes table using inner join
-  has_many :users, through: :likes
+  # the source is the user
+  has_many :likers, through: :likes, source: :user
   
   def self.upcoming
     where('starts_at >= ?', Time.now).order(:starts_at)

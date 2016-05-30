@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   # destroy all users registrations when user itself is destroyed
   has_many :registrations, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :liked_events, through: :likes, source: :event
   has_secure_password
   # password digest has validations
   # bcrypt ruby gem to encrypt the password
