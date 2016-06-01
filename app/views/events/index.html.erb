@@ -1,13 +1,17 @@
 <ul id="events">
+<!-- iterate over each event with a block -->
   <% @events.each do |event| %>
     <li>
       <article class="event" id="<%= dom_id(event) %>">
         <header>
           <%= image_for(event) %>
+          <!-- rails can figure out that the class of event to call the path to pass the event as parameter -->
           <h2><%= link_to(event.name, event) %></h2>
+          <!-- pluralize is a helper -->
           <h3><%= pluralize(event.spots_left, 'spot') %> left</h3>
         </header>
         <p>
+        <!-- truncate helper method to display length of description -->
           <%= truncate(event.description, length: 150, separator: ' ') %>
         </p>
         <table>
@@ -21,6 +25,7 @@
           </tr>
           <tr>
             <th>Price</th>
+           <!--  in the helper method -->
             <td><%= format_price(event) %></td>
           </tr>
         </table>

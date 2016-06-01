@@ -1,8 +1,10 @@
 module EventsHelper
   def format_price(event)
     if event.free?
+      # built in helper generate tag for html with string free
       content_tag(:strong, 'Free')
     else
+      # built in method to convert currency
       number_to_currency(event.price)
     end
   end

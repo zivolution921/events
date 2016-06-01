@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530235254) do
+ActiveRecord::Schema.define(version: 20160601215119) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -20,14 +20,14 @@ ActiveRecord::Schema.define(version: 20160530235254) do
   end
 
   create_table "categorizations", force: true do |t|
-    t.string   "event"
-    t.string   "references"
+    t.integer  "event_id"
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "categorizations", ["category_id"], name: "index_categorizations_on_category_id"
+  add_index "categorizations", ["event_id"], name: "index_categorizations_on_event_id"
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -67,7 +67,11 @@ ActiveRecord::Schema.define(version: 20160530235254) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin",           default: false
+    t.boolean  "admin",            default: false
+    t.string   "provider"
+    t.integer  "uid"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
 end

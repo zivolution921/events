@@ -8,9 +8,10 @@ class Event < ActiveRecord::Base
 
   validates :capacity, numericality: { only_integer: true, greater_than: 0 }
   # must pass this format at least one word and "." gif jpg or png 
-  # add custome message and override rails message
   validates :image_file_name, allow_blank: true, format: {
+  # at least one word character and "." and gif or jpg or png
     with:    /\w+\.(gif|jpg|png)\z/i,
+  # costume message override default message
     message: "must reference a GIF, JPG, or PNG image"
   }
 
@@ -24,17 +25,22 @@ class Event < ActiveRecord::Base
   # associate event and user through likes table using inner join
   # the source is the user
   has_many :likers, through: :likes, source: :user
+  
   has_many :categorizations, dependent: :destroy
+  # event to assign categories through association let choose category_ids and able to assign multiple categories
   has_many :categories, through: :categorizations
   
+  accepts_nested_attributes_for :categories
+
   def self.upcoming
     where('starts_at >= ?', Time.now).order(:starts_at)
   end
   
   def self.inexpensive
+    # Event.where('price <= ?')
     where('price <= 15').order('price DESC')
   end
-    
+  # business logic to define if event is free  
   def free?
     price.blank? || price.zero?
   end  
@@ -47,6 +53,7 @@ class Event < ActiveRecord::Base
     end
   end
   
+  # boolean to check if sold_out or not
   def sold_out?
     spots_left.zero?
   end

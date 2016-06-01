@@ -1,3 +1,4 @@
+<!-- creating form for the object event that takes a block -->
 <%= form_for(@event) do |f| %>
 <!-- assigning object to the errors partial with value @event -->
   <%= render "shared/errors", object: @event %>
@@ -32,8 +33,20 @@
         <%= f.text_field :image_file_name, size: 30, 
                          placeholder: "GIF, JPG, or PNG file name" %>
       </li>
+      <li>
+     <!--  checkbox take number of parameters of attributes in the event object calling all categories to list them and value to use for checkbox input is the id and name attribute -->
+
+      <%= f.fields_for :categories do |category| %>
+        <li class="required">
+          <%= category.label :category_name %>
+          <%= category.text_field :name %>
+        </li>
+      <% end %>
+      </li>
     </ol>
     <p>
+
+
       <%= f.submit %>
       <%= link_to "Cancel", events_path, class: 'button' %>
     </p>

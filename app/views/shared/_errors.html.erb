@@ -1,3 +1,4 @@
+<!-- if the object or event has any errors -->
 <% if object.errors.any? %>
 <section id="errors">
   <header>
@@ -9,6 +10,7 @@
     </h3>
   </header>
   <ul>
+  <!-- loop through all the errors get all the full_messages give it a block and create li for each message -->
     <% object.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>

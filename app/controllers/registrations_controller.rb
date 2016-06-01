@@ -5,8 +5,7 @@ class RegistrationsController < ApplicationController
 
 
   def index
-    # params hash to find the specific event_id
-    # the event object will associate to registration
+    # the event object will associate to registrations
     # event_id is passed and we asign the registration object
     # query scoped to the particular event, registrations belong to the event
     @registrations = @event.registrations
@@ -35,7 +34,8 @@ private
   def registration_params
     params.require(:registration).permit(:how_heard)
   end
-
+  
+  # params hash to find the specific event_id
   def set_event
     @event = Event.find(params[:event_id])
   end

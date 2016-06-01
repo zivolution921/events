@@ -6,6 +6,7 @@
       </li>
       <% if current_user_admin? %>
         <li class="create-event">
+        <!-- triggering to new action path -->
           <%= link_to 'Add New Event', new_event_path, class: 'button' %>
         </li>
       <% end %>

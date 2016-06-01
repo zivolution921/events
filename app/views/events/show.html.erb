@@ -32,6 +32,14 @@
       <% end %>
     </ul>
   <% end %>
+
+  <h3>Categories</h3>
+<!--   loop through each category and display the category name -->
+  <ul>
+    <% @categories.each do |category| %>
+      <li><%= category.name %></li>
+    <% end %>
+  </ul>
   
   <h3>Price</h3>
   <p>
@@ -52,14 +60,19 @@
   <%= link_to pluralize(@event.registrations.size, 'registration'), 
               event_registrations_path(@event) %>
 
-  <footer>
+  <footer>  
+  <!-- registraion_helper -->
     <%= register_link_for(@event) %>
     <nav>
       <% if current_user_admin? %>
+      <!-- passing @event object instance var -->
         <%= link_to 'Edit', edit_event_path(@event), class: 'button' %>
+        <!-- event_path passing @event object. link_to with send http request to verb so we override with method delete an event -->
         <%= link_to 'Delete', @event, 
                     class: 'button',
-                    method: :delete, data: { confirm: 'Are you sure?' } %>
+                    method: :delete, 
+                    # taking data with hash to confirm
+                    data: { confirm: 'Are you sure?' } %>
       <% end %>
     </nav>
   </footer>

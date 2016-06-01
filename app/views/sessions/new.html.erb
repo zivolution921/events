@@ -5,8 +5,9 @@
 <%= form_tag(session_path) do %>
   <fieldset>
     <p>
+    <!-- parameters mapped to create action -->
       <%= label_tag :email %>
-      <!-- attribute email value is nil blank -->
+      <!-- attribute email value is nil or blank -->
       <%= email_field_tag :email, nil, autofocuse: true %>
     </p>
     <p>

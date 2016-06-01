@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    # logout the user_id to nil
+    # logout the user_id key to nil
     session[:user_id] = nil
     redirect_to root_url, alert: "Account successfully deleted!"
   end
