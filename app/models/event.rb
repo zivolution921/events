@@ -30,7 +30,11 @@ class Event < ActiveRecord::Base
   # event to assign categories through association let choose category_ids and able to assign multiple categories
   has_many :categories, through: :categorizations
   
-  accepts_nested_attributes_for :categories
+  # accepts_nested_attributes_for :categories
+
+  def category_attributes=(category_attributes)
+    categories.create(category_attributes)
+  end
 
   def self.upcoming
     where('starts_at >= ?', Time.now).order(:starts_at)

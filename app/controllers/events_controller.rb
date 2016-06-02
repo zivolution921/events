@@ -46,9 +46,15 @@ class EventsController < ApplicationController
   def create
     # instantiate new Event object with permitted parameter and save to database
     # setting up event in memory and calling save method
-    @event = Event.new(event_params)
+      puts "PARAMS HASH: #{params.inspect}"
+      @event = Event.new(event_params)
+      category_name = params['event']['category_attributes']['0']['name']
+      puts "category_name: #{category_name.inspect}"
+      
     #save method will call the validations if it is true will redirect to show page
     if @event.save
+       category_hash = { name: category_name }
+       @event.category_attributes = category_hash
     # redirecting by convention to show page
       redirect_to @event, notice: "Event successfully created!"
     else
@@ -78,8 +84,7 @@ private
     params.require(:event).permit(
       :name, :description,
       :location, :price, :starts_at, 
-      :image_file_name, :capacity, 
-      categories_attributes: [ :id, :name ]
+      :image_file_name, :capacity
     )
   end
 end

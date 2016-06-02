@@ -35,17 +35,13 @@
       </li>
       <li>
      <!--  checkbox take number of parameters of attributes in the event object calling all categories to list them and value to use for checkbox input is the id and name attribute -->
-
-      <%= f.fields_for :categories do |category| %>
-        <li class="required">
-          <%= category.label :category_name %>
-          <%= category.text_field :name %>
-        </li>
-      <% end %>
+      <li class="required">
+        <%= label_tag 'category_name' %>
+        <%= text_field_tag 'event[category_attributes][0][name]' %>
+      </li>
       </li>
     </ol>
     <p>
-
 
       <%= f.submit %>
       <%= link_to "Cancel", events_path, class: 'button' %>
