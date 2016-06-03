@@ -6,14 +6,12 @@ Events allow users to track upcoming events based on location and choose categor
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-gem 'events'
-And then execute:
-$ bundle
-Or install it yourself as:
-
-$ gem install events
+To get this running locally on your computer:
+- Clone this repo locally `git clone https://github.com/zivolution921/events`
+- cd into the directory
+- Run `bundle`
+- Run `rake db:migrate`
+- Run the application using `rails s`
 
 ## Contributing
 
