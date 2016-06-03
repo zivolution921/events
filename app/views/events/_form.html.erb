@@ -36,7 +36,12 @@
       <li>
      <!--  checkbox take number of parameters of attributes in the event object calling all categories to list them and value to use for checkbox input is the id and name attribute -->
       <li class="required">
-        <%= label_tag 'category_name' %>
+        <%= f.label :category %><br />
+        <%= f.collection_select(:category_ids, Category.all, :id, :name, :include_blank => "Please select") %>
+      </li>
+
+      <li class="required">
+        <%= label_tag 'add_cateogry' %>
         <%= text_field_tag 'event[category_attributes][0][name]' %>
       </li>
       </li>

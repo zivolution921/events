@@ -48,12 +48,13 @@ class EventsController < ApplicationController
     # setting up event in memory and calling save method
       puts "PARAMS HASH: #{params.inspect}"
       @event = Event.new(event_params)
+      # category_attributes is custom attribute writer
       category_name = params['event']['category_attributes']['0']['name']
       puts "category_name: #{category_name.inspect}"
       
     #save method will call the validations if it is true will redirect to show page
     if @event.save
-       category_hash = { name: category_name }
+       category_hash = { name: add_cateogry }
        @event.category_attributes = category_hash
     # redirecting by convention to show page
       redirect_to @event, notice: "Event successfully created!"
@@ -84,7 +85,8 @@ private
     params.require(:event).permit(
       :name, :description,
       :location, :price, :starts_at, 
-      :image_file_name, :capacity
+      :image_file_name, :capacity,
+      :category_ids => []
     )
   end
 end

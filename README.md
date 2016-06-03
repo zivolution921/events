@@ -27,3 +27,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/zivolu
 License
 
 The gem is available as open source under the terms of the MIT License.
+Copyright by Ziv Zamechek, 2016 Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php

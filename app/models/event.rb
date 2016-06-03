@@ -27,11 +27,12 @@ class Event < ActiveRecord::Base
   has_many :likers, through: :likes, source: :user
   
   has_many :categorizations, dependent: :destroy
-  # event to assign categories through association let choose category_ids and able to assign multiple categories
+  # event to assign categories through association category_ids
+  # and able to assign multiple categories
   has_many :categories, through: :categorizations
   
   # accepts_nested_attributes_for :categories
-
+  # custom attribute writer.
   def category_attributes=(category_attributes)
     categories.create(category_attributes)
   end
