@@ -34,7 +34,8 @@ class Event < ActiveRecord::Base
   # accepts_nested_attributes_for :categories
   # custom attribute writer.
   def category_attributes=(category_attributes)
-    categories.create(category_attributes)
+    #raise category_attributes.inspect
+    categories.build(category_attributes)
   end
 
   def self.upcoming
