@@ -58,12 +58,19 @@ class EventsController < ApplicationController
       #category_name = params['event']['category_attributes']['1']['name']
       #puts "category_name: #{category_name.inspect}"
       # setter method
-      @event.category_attributes = event_params[:category_attributes].to_h.values
+      
       
     #save method will call the validations if it is true will redirect to show page
     if @event.save
     # parent is saved by default the child is saved
     # redirecting by convention to show page
+      event_params[:category_attributes].keys.each do |key|
+        category = Category.find_or_create_by(name: event_params[:category_attributes][key][:name])
+        Categorization.find_or_create_by(event_id: @event.id, category_id: category.id)
+      end
+      # @event.categories.find_or_create_by(name: event_params[:category_attributes]["0"][:name])
+      # @event.categories.find_or_create_by(name: event_params[:category_attributes]["1"][:name])
+    # @event.category_attributes = event_params[:category_attributes].to_h.values
       redirect_to @event, notice: "Event successfully created!"
     else
     # render new template and prepopulate the form 

@@ -35,7 +35,7 @@ class Event < ActiveRecord::Base
   # custom attribute writer.
   def category_attributes=(category_attributes)
     #raise category_attributes.inspect
-    categories.build(category_attributes)
+    categories.new(category_attributes)
   end
 
   def self.upcoming

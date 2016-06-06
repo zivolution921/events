@@ -10,7 +10,7 @@
         <% else %>
           <%= link_to 'Sign Up', signup_path, class: 'button' %>
           <%= link_to 'Sign In', new_session_path, class: 'button' %>
-          <%= link_to "auth/facebook", class: "btn btn-social btn-lg btn-facebook", id: "sign_in" do %>
+          <%= link_to "/auth/facebook", class: "btn btn-social btn-lg btn-facebook", id: "sign_in" do %>
               <i class="fa fa-facebook"></i> Sign in with Facebook
           <% end %>
         <% end %>
