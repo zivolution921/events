@@ -12,7 +12,7 @@ class EventsController < ApplicationController
     # hash params to find event based on id from url
     @event = Event.find(params[:id])
     @likers = @event.likers
-    # categories for each event
+    # categories for each event through association
     @categories = @event.categories
     # return like object only if logged in
     if current_user
@@ -26,11 +26,22 @@ class EventsController < ApplicationController
   end
   
   def update
+    category_ids = [ event_params[:category_ids] ]
     # returns true or false based on validation on record on database
     @event = Event.find(params[:id])
-    if @event.update(event_params)
-    # redirect to event path and rails figure out to go to show page
-    # flash object hash with key and value :notice
+    if @event.update(event_params.
+        merge(category_ids: category_ids).
+        except(:category_attributes)
+      )
+      event_params[:category_attributes].keys.each do |key|
+        category = Category.find_or_create_by(name: event_params[:category_attributes][key][:name])
+        # categorization is join model find_or_create_by event.id and category.id
+        # we can create a new event with an existing category
+        # when you want to attach an existing category to an event
+        Categorization.create(event_id: @event.id, category_id: category.id)
+      end
+      # redirect to event path and rails figure out to go to show page
+      # flash object hash with key and value :notice
       redirect_to @event, notice: "Event successfully updated!"
     else
       render :edit
@@ -40,7 +51,6 @@ class EventsController < ApplicationController
   def new
     # instantiate empty event objet and render new view template erb
     @event = Event.new
-    @event.categories.build
   end
   
   def create
@@ -64,9 +74,14 @@ class EventsController < ApplicationController
     if @event.save
     # parent is saved by default the child is saved
     # redirecting by convention to show page
+    # loop through category_attributes keys assigning category variable
+    # find or create name of category attribute name
       event_params[:category_attributes].keys.each do |key|
         category = Category.find_or_create_by(name: event_params[:category_attributes][key][:name])
-        Categorization.find_or_create_by(event_id: @event.id, category_id: category.id)
+    # categorization is join model find_or_create_by event.id and category.id
+    # we can create a new event with an existing category
+    # when you want to attach an existing category to an event
+        Categorization.create(event_id: @event.id, category_id: category.id)
       end
       # @event.categories.find_or_create_by(name: event_params[:category_attributes]["0"][:name])
       # @event.categories.find_or_create_by(name: event_params[:category_attributes]["1"][:name])

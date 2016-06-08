@@ -34,10 +34,10 @@
   <% end %>
 
   <h3>Categories</h3>
-<!--   loop through each category and display the category name -->
+<!--   loop through each category and display the category name unique -->
   <ul>
-    <% @categories.each do |category| %>
-      <li><%= category.name %></li>
+    <% @categories.pluck(:name).uniq.each do |category_name| %>
+      <li><%= category_name %></li>
     <% end %>
   </ul>
   
