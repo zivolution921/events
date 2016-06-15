@@ -31,10 +31,11 @@ class Event < ActiveRecord::Base
   # and able to assign multiple categories
   has_many :categories, through: :categorizations
   
-  # accepts_nested_attributes_for :categories
-  # custom attribute writer.
-  def category_attributes=(category_attributes)
-    #raise category_attributes.inspect
+  # custom attribute writer.setting category_attributes attr_writer
+  #  passing * category_attributes* as an array of hash
+  # iterating over the category_attributes and creating category object
+  def category_attributes=(category_attributes)  # setter
+    # raise category_attributes.inspect
     category_attributes.keys.each do |key|
       categories.new(category_attributes[key])
     end

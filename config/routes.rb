@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # when we get signup than go to user controller
   get "signup" => "users#new"
 
+  # creating all Resful routes for users resource
   resources :users
 
   match 'auth/:provider/callback', to: 'sessions#facebook', via: [:get, :post]

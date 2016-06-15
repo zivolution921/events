@@ -37,12 +37,15 @@
      <!--  checkbox take number of parameters of attributes in the event object calling all categories to list them and value to use for checkbox input is the id and name attribute -->
       <li class="required">
         <%= f.label :categories %><br />
+        <!-- the id is the value for input and text to display is name attribute -->
         <%= f.collection_select(:category_ids, Category.all, :id, :name, :include_blank => "Please select") %>
       </li>
 
       <li class="required">
+      <!-- get a controller action's name  -->
         <% if controller.action_name == 'edit' %>
            <%= label_tag 'update_cateogry' %>
+      <!-- return array of attribute value unique name and loop through array with key and its name -->
           <% @event.categories.pluck(:name).uniq.each_with_index do |category_name, key| %>
           <%= text_field_tag "event[category_attributes][#{key}][name]", category_name %>
         <% end %>

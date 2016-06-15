@@ -16,11 +16,15 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    # render 'new'
   end
 
   def create
+    #fail
+    #binding.pry
     @user = User.new(user_params)
     if @user.save
+      # save user_id in the session object
       session[:user_id] = @user.id
       redirect_to @user, notice: "Thanks for signing up!"
     else
